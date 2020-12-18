@@ -1,0 +1,83 @@
+<ion-header>
+    <ion-toolbar *ngIf="authService.isLoggedIn === true">
+        <div class="ion-padding-start">
+            <b>PROFIL SAYA</b>
+        </div>
+
+        <ion-buttons slot="end">
+            <ion-button size="small" type="submit" (click)="authService.SignOut()">Keluar</ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngIf="authService.isLoggedIn === true" lines="none">
+  <div class = "ion-nowrap">
+          <ion-row style="background-color: #DDA15E; width : 414px; height: 170px;">
+                  <div id="profile-info" *ngIf="usernames">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-avatar style="width:150px; height:150px;" class="user-image ion-padding">
+                                <ion-img src="{{photoProfile}}"></ion-img>
+                            </ion-avatar>
+
+                            <div class="ion-padding-start">
+                                <br><br><ion-text><b>Hi,<br></b></ion-text>
+                            <ion-label  style="font-size: 25px"><b>{{usernames}}</b></ion-label>
+                                <ion-img class="edit-button" src="https://firebasestorage.googleapis.com/v0/b/baticca-755ef.appspot.com/o/Profile%2Fbtn-edit%20(1).png?alt=media&token=730b13bf-c470-4fc1-949f-2bee0da037c7" routerLink="/home/edit-profile" ></ion-img>
+                            </div>
+                        </ion-row>
+                    </ion-grid>
+              </div>
+          </ion-row>
+
+      <br>
+
+          <ion-label><b>Nama</b></ion-label>
+      <ion-card class="field-user">
+          <ion-text class="ion-padding-top ion-padding-start ion-text-center">{{ names }}</ion-text>
+      </ion-card>
+
+      <ion-text><b>Username</b></ion-text>
+      <ion-card  class="field-user">
+          <ion-text class="ion-padding-top ion-padding-start ion-text-center">{{ usernames }}</ion-text>
+      </ion-card>
+
+          <ion-text><b>Email</b></ion-text>
+          <ion-card  class="field-user">
+              <ion-text class="ion-padding-top ion-padding-start ion-text-center">{{userEmail}}</ion-text>
+      </ion-card>
+
+      <ion-text><b>Lokasi</b></ion-text>
+      <ion-card  class="field-user">
+          <ion-text class="ion-padding-top ion-padding-start ion-text-center">{{place}}</ion-text>
+          <ion-text class="ion-padding-top ion-padding-start ion-text-center">{{checkinDate}}</ion-text>
+      </ion-card>
+  </div>
+
+  </ion-item>
+
+
+
+  <ion-item lines="none" *ngIf="authService.isLoggedIn === false">
+      <div class = "ion-nowrap">
+        <p><br><br></p>
+          <div class="center">
+      </div>
+
+    <ion-button class="login-button" color="secondary" href="/home/login">Masuk</ion-button>
+
+          <ion-row>
+              <ion-col>
+                  <p class="ion-text-center">
+                  <ion-text>Belum punya akun? </ion-text>
+                  <a [href]="['/home/register']">Buat akun</a>
+                  </p>
+              </ion-col>
+          </ion-row>
+      </div>
+  </ion-item>
+
+
+</ion-content>

@@ -1,0 +1,66 @@
+<ion-content mode="ios">
+  <ion-buttons mode="md">
+    <ion-back-button defaultHref="/home/tabs/profile"></ion-back-button>
+  </ion-buttons>
+
+  <!--  Title and Subtitle  -->
+  <div class="ion-padding-start">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1>MASUK AKUN</h1>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <form #form="ngForm">
+
+    <ion-label position="fixed" class="ion-padding-start">Email</ion-label>
+    <ion-card class="input-field">
+      <ion-input class="ion-padding-start"
+                 style="font-size: 18px;"
+                 type="text"
+                 name="emails"
+                 ngModel
+                 #email = "ngModel"
+                 required></ion-input>
+    </ion-card>
+    <ion-item lines="none" *ngIf="!email.valid && email.touched">
+      <ion-note color="danger">Email tidak boleh kosong.</ion-note>
+    </ion-item>
+
+    <ion-label position="fixed" class="ion-padding-start">Kata Sandi</ion-label>
+    <ion-card class="input-field">
+      <ion-input class="ion-padding-start"
+                 style="font-size: 18px;"
+                 type="password"
+                 name="password"
+                 ngModel
+                 #password = "ngModel"
+                 required></ion-input>
+    </ion-card>
+    <ion-item lines="none" *ngIf="!password.valid && password.touched">
+      <ion-note color="danger">Password tidak boleh kosong.</ion-note>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit"
+                    color="secondary"
+                    shape="round"
+                    [disabled]="!form.valid"
+                    (click)="presentLoading(email, password)"
+                    expand="block">MASUK</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <br>
+    <ion-row class="ion-text-center">
+      <ion-col>
+        <ion-text>Belum punya akun? </ion-text>
+        <a [href]="['/home/register']">Buat akun</a>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

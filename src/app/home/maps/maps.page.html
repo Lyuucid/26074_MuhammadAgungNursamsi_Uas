@@ -1,0 +1,23 @@
+<ion-content>
+  <ion-item *ngIf="checkIn === false">
+    <ion-button (click)="showCurrentLoc()" shape="round">
+      <ion-icon name="locate-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="inputCheckIn()">Tandai Lokasi</ion-button>
+  </ion-item>
+  <ion-item *ngIf="checkIn === true">
+    <form #form="ngForm">
+      <ion-input
+              placeholder="Nama Lokasinya apa nih?"
+              name="place"
+              ngModel
+              #place = "ngModel"
+              required></ion-input>
+
+      <ion-button [disabled]="!form.valid"
+                  (click)="presentLoading(place)">Check-in</ion-button>
+      <ion-button color="danger" (click)="cancelCheckIn()">Cancel</ion-button>
+    </form>
+  </ion-item>
+  <div #map id="map"></div>
+</ion-content>

@@ -1,0 +1,95 @@
+<ion-content mode="ios">
+  <ion-buttons mode="md">
+    <ion-back-button defaultHref="/home/tabs/profile"></ion-back-button>
+  </ion-buttons>
+
+  <!--  Title and Subtitle  -->
+  <div class="ion-padding-start">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1>REGISTRASI AKUN</h1>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <form #form="ngForm">
+
+    <ion-label position="fixed" class="ion-padding-start">Nama</ion-label>
+    <ion-card class="input-field">
+      <ion-input class="ion-padding-start"
+                 style="font-size: 18px;"
+                 type="text"
+                 name="names"
+                 ngModel
+                 #name = "ngModel"
+                 required></ion-input>
+    </ion-card>
+    <ion-item lines="none" *ngIf="!name.valid && name.touched">
+      <ion-note color="danger">Nama tidak boleh kosong.</ion-note>
+    </ion-item>
+
+    <ion-label position="fixed" class="ion-padding-start">Email</ion-label>
+    <ion-card class="input-field">
+      <ion-input class="ion-padding-start"
+                 style="font-size: 18px;"
+                 type="email"
+                 name="emails"
+                 ngModel
+                 #email = "ngModel"
+                 required></ion-input>
+    </ion-card>
+    <ion-item lines="none" *ngIf="!email.valid && email.touched">
+      <ion-note color="danger">Email tidak boleh kosong.</ion-note>
+    </ion-item>
+
+    <ion-label position="fixed" class="ion-padding-start">Username</ion-label>
+    <ion-card class="input-field">
+      <ion-input class="ion-padding-start"
+                 style="font-size: 18px;"
+                 type="text"
+                 name="usernames"
+                 ngModel
+                 #username = "ngModel"
+                 required></ion-input>
+    </ion-card>
+    <ion-item lines="none" *ngIf="!username.valid && username.touched">
+      <ion-note color="danger">Username tidak boleh kosong.</ion-note>
+    </ion-item>
+
+    <ion-label position="fixed" class="ion-padding-start">Kata Sandi</ion-label>
+    <ion-card class="input-field">
+      <ion-input class="ion-padding-start"
+                 style="font-size: 18px;"
+                 type="password"
+                 name="password"
+                 ngModel
+                 #password = "ngModel"
+                 required></ion-input>
+    </ion-card>
+    <ion-item lines="none" *ngIf="!password.valid && password.touched">
+      <ion-note color="danger">Password tidak boleh kosong.</ion-note>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit"
+                    color="secondary"
+                    shape="round"
+                    [disabled]="!form.valid"
+                    (click)="presentLoading(email, password, name, username)"
+                    expand="block">Register</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <br>
+    <ion-row class="ion-text-center">
+      <ion-col>
+        <ion-text>Sudah punya akun? </ion-text>
+        <a [href]="['/home/login']">Masuk akun</a>
+      </ion-col>
+    </ion-row>
+    <br><br>
+  </form>
+</ion-content>
